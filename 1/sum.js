@@ -1,10 +1,16 @@
-sum = (x) => {
-    if (this.store === undefined){
-        this.store = 0;
-    }
-    if (x === undefined){
-        return this.store;
-    }
-    this.store+=x;
-    return undefined;
+function sum(x){
+	var store = x;
+	return function add(x){
+		if (store === undefined){
+			store = 0;
+		}
+		if (x === undefined){
+			return store;
+		}
+		store+=x;
+		return add;
+	}
+
 }
+
+console.log(sum(2)(3)(4)(5)());
